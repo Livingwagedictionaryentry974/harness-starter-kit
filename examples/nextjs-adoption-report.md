@@ -1,0 +1,52 @@
+# Example Adoption Report: Next.js Target
+
+## Target
+
+`sample-next-dashboard`, a tiny Next.js App Router project using TypeScript.
+
+## Files Added Or Changed
+
+- Added `AGENTS.md` with App Router boundaries, generated-file rules, and
+  completion checks.
+- Added `.harness/structure-rules.json`.
+- Added `scripts/check_docs_drift.py` and `scripts/check_structure.py`.
+- Added `docs/conventions/coding.md`, `docs/domain/glossary.md`, and
+  `docs/decisions/001-adopt-next-agent-harness.md`.
+- Added Next.js profile snippets under `docs/harness/profiles/nextjs/`.
+- Added `typecheck` and `check:harness` scripts to `package.json`.
+- Added `.gitignore` entries for `.next/`, `node_modules/`,
+  `tsconfig.tsbuildinfo`, and `harness-starter-kit/`.
+
+## Checks Run
+
+```powershell
+npm.cmd run check:harness
+```
+
+The command ran:
+
+- `npm run typecheck`
+- `npm run build`
+- `python scripts/check_docs_drift.py`
+- `python scripts/check_structure.py`
+
+All checks passed.
+
+## Findings
+
+- Use `tsc --noEmit --incremental false` to avoid leaving
+  `tsconfig.tsbuildinfo` behind.
+- Do not assume `next lint` exists. Current Next.js versions may not expose it
+  as a valid command.
+- `next build` may update `tsconfig.json` and `next-env.d.ts` during initial
+  setup. Review those changes as target-project changes.
+- `npm audit --audit-level=high` passed. Moderate advisories may still appear
+  through Next.js transitive dependencies; do not apply breaking audit fixes
+  blindly.
+
+## Remaining Manual Steps
+
+- Remove, ignore, or intentionally keep `harness-starter-kit/` before committing
+  adoption changes.
+- Add CI only after confirming the target repository uses GitHub Actions or
+  another specific provider.

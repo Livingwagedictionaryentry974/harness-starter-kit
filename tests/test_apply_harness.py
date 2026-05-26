@@ -77,6 +77,17 @@ class ApplyHarnessTests(unittest.TestCase):
             self.assertTrue((profile_root / "pyproject.harness.toml").exists())
             self.assertTrue((profile_root / "pre-commit-config.harness.yaml").exists())
 
+    def test_nextjs_profile_snippets_are_written_under_docs_harness(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp)
+
+            self.run_installer(target, "--profile", "nextjs")
+
+            profile_root = target / "docs" / "harness" / "profiles" / "nextjs"
+            self.assertTrue((profile_root / "README.md").exists())
+            self.assertTrue((profile_root / "package-scripts.harness.json").exists())
+            self.assertTrue((profile_root / "gitignore.harness.txt").exists())
+
     def test_generated_harness_checks_pass(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             target = Path(tmp)

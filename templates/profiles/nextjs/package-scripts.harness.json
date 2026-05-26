@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "typecheck": "tsc --noEmit --incremental false",
+    "check:harness": "npm run typecheck && npm run build && python scripts/check_docs_drift.py && python scripts/check_structure.py"
+  }
+}

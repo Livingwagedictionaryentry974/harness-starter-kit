@@ -128,3 +128,4 @@ Add checks for drift:
 - Add profile-specific guidance under `templates/profiles/<profile>/`.
 - Scripts should be safe by default and avoid overwriting user files.
 - Favor clear Markdown and small Python scripts over heavyweight generators.
+- Keep `examples/*-adoption-report.md` aligned with real adoption tests.

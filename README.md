@@ -157,8 +157,22 @@ Use `typescript` when the target project uses JavaScript or TypeScript. It adds
 reference snippets for ESLint, dependency boundaries, unused export checks, and
 package scripts.
 
+Use `nextjs` when the target project is a Next.js app. It adds reference
+snippets for `next build`, non-emitting TypeScript checks, generated-file
+ignores, and current Next.js lint caveats.
+
 Profiles are intentionally conservative. They provide snippets and guidance
 instead of rewriting existing build systems.
+
+## Tested Scenarios
+
+This kit has been smoke-tested against:
+
+- a small Node.js ES module project using `node --test`
+- a small Next.js App Router project using TypeScript and `next build`
+
+See `examples/node-adoption-report.md` and
+`examples/nextjs-adoption-report.md` for example adoption reports.
 
 ## Local Checks
 

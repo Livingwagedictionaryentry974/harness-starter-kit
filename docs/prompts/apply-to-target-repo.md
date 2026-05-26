@@ -46,4 +46,7 @@ Finish by reporting:
 - assumptions you made
 - remaining manual steps
 - what to do with ./harness-starter-kit before committing
+
+Use ./harness-starter-kit/docs/templates/adoption-report.md as the report shape
+if present.
 ```

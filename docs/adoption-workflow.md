@@ -66,6 +66,9 @@ Match constraints to the stack:
 - Python: Ruff, mypy, import-linter, vulture, pre-commit
 - TypeScript: ESLint, TypeScript strictness, dependency boundary rules,
   unused-export checks
+- Next.js: `next build`, `tsc --noEmit --incremental false`, generated-file
+  ignores, and a review of any `tsconfig.json` or `next-env.d.ts` changes made
+  by Next itself
 - Any stack: CI checks, formatting checks, forbidden-file scans
 
 Prefer existing tools when possible.
@@ -92,3 +95,10 @@ Install lightweight drift checks:
 
 Run them manually at first, then wire them into CI once they are stable. The
 installer only adds the GitHub Actions workflow when `--with-ci` is provided.
+
+## 8. Report Adoption
+
+Finish with a short adoption report. Use
+`docs/templates/adoption-report.md` as a shape and compare against
+`examples/node-adoption-report.md` or `examples/nextjs-adoption-report.md` when
+the target stack is similar.
