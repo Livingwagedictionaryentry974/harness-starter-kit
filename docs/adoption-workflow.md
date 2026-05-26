@@ -75,6 +75,10 @@ Match constraints to the stack:
   by Next itself
 - Any stack: CI checks, formatting checks, forbidden-file scans
 
+Profile files are agent reference material, not automatic transformations.
+After installation, use snippets from `docs/harness/profiles/<profile>/` only
+when they fit the target repository's existing tools and conventions.
+
 Prefer existing tools when possible.
 
 ## 6. Add Feedback Loops

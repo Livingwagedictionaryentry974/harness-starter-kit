@@ -27,6 +27,8 @@ Rules:
 - Do not delete existing files unless I explicitly ask.
 - Do not edit files under ./harness-starter-kit during adoption unless I
   explicitly ask.
+- Treat any stack profile files as reference snippets for you to adapt, not as
+  automatic changes that must be copied into the project.
 - Before finishing, tell me whether ./harness-starter-kit should be removed,
   ignored, or kept intentionally as a submodule/reference before I commit.
 

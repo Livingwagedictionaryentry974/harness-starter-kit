@@ -172,8 +172,11 @@ Use `flask` when the target project is a Flask app. It adds reference snippets
 for `unittest` discovery, Flask route checks, instance-data ignores, and a
 Python `check_harness.py` entrypoint.
 
-Profiles are intentionally conservative. They provide snippets and guidance
-instead of rewriting existing build systems.
+Profiles are intentionally conservative reference material for the agent. They
+are not automatic project transformations. The installer copies profile files
+under `docs/harness/profiles/<profile>/` so an agent or maintainer can merge,
+adapt, or ignore the relevant snippets while preserving the target project's
+existing build system.
 
 ## Tested Scenarios
 

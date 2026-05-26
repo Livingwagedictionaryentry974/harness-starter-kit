@@ -3,6 +3,9 @@
 Use these snippets when the target project is a Next.js app, especially an App
 Router project.
 
+These files are agent reference material, not automatic transformations. Merge
+only the pieces that fit the target project's existing tools.
+
 ## Recommended Checks
 
 - `next build` for production build validation.

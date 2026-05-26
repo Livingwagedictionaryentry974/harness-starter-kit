@@ -2,6 +2,9 @@
 
 Use these snippets when the target project is a Django app or service.
 
+These files are agent reference material, not automatic transformations. Merge
+only the pieces that fit the target project's existing tools.
+
 ## Recommended Checks
 
 - `python manage.py check` for Django system checks.

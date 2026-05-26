@@ -2,6 +2,9 @@
 
 Use these snippets when the target project is a Flask app or API.
 
+These files are agent reference material, not automatic transformations. Merge
+only the pieces that fit the target project's existing tools.
+
 ## Recommended Checks
 
 - `python -m unittest discover -s tests` for standard-library tests.
