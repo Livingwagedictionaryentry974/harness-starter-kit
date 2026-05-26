@@ -14,10 +14,17 @@ Collect the current shape before changing anything:
 - language and framework
 - package manager
 - test commands
-- lint and format commands
+- lint, format, type-check, and build commands
 - CI provider
 - directory layout
+- monorepo layout, if present
 - existing docs and agent instruction files
+- existing architecture, domain, decision, and contribution docs
+
+Read `README.md`, `AGENTS.md`, `CLAUDE.md`, `CONTRIBUTING.md`, package
+manifests, and CI configs when they exist. If the target already has an
+equivalent docs or knowledge structure, use that structure instead of creating a
+parallel one.
 
 ## 2. Identify Existing Harness Pieces
 
@@ -101,12 +108,25 @@ Agents improve fastest when feedback is quick and concrete.
 
 ## 7. Add Garbage Collection
 
-Install lightweight drift checks:
+Install lightweight baseline drift checks:
 
 - missing files referenced by docs
 - broken local Markdown links
 - forbidden temporary filenames
 - unused code checks for the chosen stack
+
+Then add target-specific drift checks only when they enforce real repository
+rules. Generic checks keep the harness tidy; project-specific checks keep the
+architecture honest.
+
+Examples:
+
+- If routes/controllers must not access persistence directly, scan route files
+  for forbidden database imports.
+- If an ADR chooses Zustand instead of Redux, fail when Redux packages are added
+  to the manifest.
+- If generated files must live under one generated-source directory, reject
+  generated files in other directories.
 
 Run them manually at first, then wire them into CI once they are stable. The
 installer only adds the GitHub Actions workflow when `--with-ci` is provided.
@@ -118,3 +138,8 @@ Finish with a short adoption report. Use
 `examples/node-adoption-report.md`, `examples/nextjs-adoption-report.md`,
 `examples/django-adoption-report.md`, `examples/flask-adoption-report.md`, or
 `examples/spring-adoption-report.md` when the target stack is similar.
+
+The report should make clear what the agent observed, which existing structures
+were reused, which snippets were adopted or skipped, which checks were run, and
+whether the nested `harness-starter-kit/` clone should be removed, ignored, or
+kept intentionally before committing.

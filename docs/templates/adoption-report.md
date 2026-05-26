@@ -1,10 +1,23 @@
 # Adoption Report
 
+## Target Repository Observed
+
+- Stack and framework: TODO
+- Package manager and commands: TODO
+- Existing docs or agent instructions: TODO
+- CI or verification path: TODO
+- Monorepo or special layout: TODO
+
 ## Files Added Or Changed
 
 - `AGENTS.md`: TODO
 - `docs/`: TODO
 - `scripts/`: TODO
+
+## Existing Structures Reused
+
+- TODO: list README, CONTRIBUTING, CI, docs, package scripts, or lint/test tools
+  that were reused instead of duplicated.
 
 ## Checks Run
 
@@ -29,6 +42,12 @@ Result: TODO
 - Snippets adopted: TODO
 - Snippets adapted: TODO
 - Snippets skipped or deferred: TODO
+
+## Drift Checks Added
+
+- Baseline doc or structure hygiene checks: TODO
+- Target-specific architecture checks: TODO
+- Not added: TODO: explain why if no target-specific drift check was practical.
 
 ## Assumptions
 
