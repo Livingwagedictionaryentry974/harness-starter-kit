@@ -25,6 +25,7 @@ class FixtureSmokeTests(unittest.TestCase):
         ),
         "django-basic": ("django", ("check_harness.py", "gitignore.harness.txt")),
         "flask-basic": ("flask", ("check_harness.py", "gitignore.harness.txt")),
+        "spring-basic": ("spring", ("check_harness.py", "gitignore.harness.txt")),
     }
 
     def run_installer(self, target: Path, profile: str) -> None:
