@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "typecheck": "tsc --noEmit --incremental false",
+    "check:harness": "npm run lint && npm run typecheck && npm test -- --run && npm run build && python scripts/check_docs_drift.py && python scripts/check_structure.py",
+    "check:unused": "npx knip"
+  },
+  "_notes": [
+    "Merge only the scripts your project needs into package.json.",
+    "'--run' flag exits Vitest after one pass (no watch mode); remove if using Jest.",
+    "check:unused requires knip (npm install -D knip) to detect dead exports and files."
+  ]
+}

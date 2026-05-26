@@ -1,0 +1,8 @@
+dist/
+.vite/
+node_modules/
+*.local
+.env.local
+.env.*.local
+coverage/
+harness-starter-kit/

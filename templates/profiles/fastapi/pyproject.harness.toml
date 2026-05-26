@@ -1,0 +1,22 @@
+# FastAPI harness snippet. Merge relevant sections into your pyproject.toml.
+# Do not copy this file verbatim; adapt to the target project's existing config.
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+# ASYNC rules catch common FastAPI async mistakes (e.g., blocking calls in async routes).
+ignore = []
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+plugins = ["pydantic.mypy"]
+# Pydantic plugin enables mypy to type-check BaseModel fields correctly.
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+# asyncio_mode = "auto" is required for async test functions with pytest-asyncio.
