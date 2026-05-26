@@ -1,0 +1,80 @@
+from __future__ import annotations
+
+import shutil
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+FIXTURE_ROOT = REPO_ROOT / "tests" / "fixtures"
+INSTALLER = REPO_ROOT / "scripts" / "apply_harness.py"
+
+
+class FixtureSmokeTests(unittest.TestCase):
+    scenarios = {
+        "node-basic": (
+            "typescript",
+            ("eslint.config.harness.mjs", "package-scripts.harness.json"),
+        ),
+        "nextjs-basic": (
+            "nextjs",
+            ("gitignore.harness.txt", "package-scripts.harness.json"),
+        ),
+        "django-basic": ("django", ("check_harness.py", "gitignore.harness.txt")),
+        "flask-basic": ("flask", ("check_harness.py", "gitignore.harness.txt")),
+    }
+
+    def run_installer(self, target: Path, profile: str) -> None:
+        subprocess.run(
+            [
+                sys.executable,
+                str(INSTALLER),
+                "--target",
+                str(target),
+                "--profile",
+                profile,
+            ],
+            cwd=REPO_ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+    def run_generated_check(self, target: Path, script_name: str) -> None:
+        subprocess.run(
+            [sys.executable, str(target / "scripts" / script_name)],
+            cwd=target,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+    def test_fixture_adoption_installs_runnable_harness_checks(self) -> None:
+        for fixture_name, (profile, expected_profile_files) in self.scenarios.items():
+            with self.subTest(fixture=fixture_name, profile=profile):
+                with tempfile.TemporaryDirectory() as tmp:
+                    target = Path(tmp)
+                    shutil.copytree(FIXTURE_ROOT / fixture_name, target, dirs_exist_ok=True)
+
+                    self.run_installer(target, profile)
+
+                    self.assertTrue((target / "AGENTS.md").exists())
+                    self.assertTrue((target / "docs" / "decisions").is_dir())
+                    self.assertTrue((target / "docs" / "failures").is_dir())
+                    self.assertFalse(
+                        (target / ".github" / "workflows" / "harness-check.yml").exists()
+                    )
+
+                    profile_root = target / "docs" / "harness" / "profiles" / profile
+                    for filename in expected_profile_files:
+                        self.assertTrue((profile_root / filename).exists())
+
+                    self.run_generated_check(target, "check_docs_drift.py")
+                    self.run_generated_check(target, "check_structure.py")
+
+
+if __name__ == "__main__":
+    unittest.main()
