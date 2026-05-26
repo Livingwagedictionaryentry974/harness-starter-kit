@@ -201,14 +201,37 @@ existing build system.
 
 ## Tested Scenarios
 
-This kit has been smoke-tested against:
+Automated fixture smoke tests cover harness installation for:
 
-- a small Node.js ES module project using `node --test`
-- a small Next.js App Router project using TypeScript and `next build`
-- a small Django project using `manage.py check` and `manage.py test`
-- a small Flask app using an app factory and Flask's test client
-- a small Spring Boot Maven project using the Maven wrapper and a Spring context
-  test
+- Node.js / TypeScript
+- Next.js
+- Django
+- FastAPI
+- Flask
+- React
+- Spring Boot
+- Vue
+
+These fixture tests verify that the installer preserves existing files, writes
+the expected profile snippets, and produces runnable generic drift checks.
+
+Additional end-to-end adoption checks have been run manually against:
+
+- a Node.js ES module project using `node --test`, repeated installer runs,
+  the TypeScript profile `check_harness.py`, and intentional drift failures
+- a FastAPI project using pytest, mypy, generated drift checks, and the FastAPI
+  profile `check_harness.py`
+
+FastAPI E2E coverage is also available as an opt-in automated test because it
+creates a virtual environment and installs dependencies:
+
+```powershell
+$env:RUN_FASTAPI_E2E = "1"
+python -m unittest tests.test_fastapi_profile_e2e
+```
+
+In GitHub Actions, run the `Harness Check` workflow manually and enable
+`run_fastapi_e2e` to execute the same dependency-installing test.
 
 See `examples/node-adoption-report.md` and
 `examples/nextjs-adoption-report.md`, `examples/django-adoption-report.md`, or

@@ -27,6 +27,37 @@ npm.cmd run check:harness
 The command ran syntax checks, `node --test`, document drift checks, and
 structure drift checks successfully.
 
+## Advanced E2E Validation
+
+An additional Node.js ES module target was used to test a more realistic
+multi-step adoption flow:
+
+```powershell
+python harness-starter-kit\scripts\apply_harness.py --target . --profile typescript --dry-run
+python harness-starter-kit\scripts\apply_harness.py --target . --profile typescript
+python harness-starter-kit\scripts\apply_harness.py --target . --profile typescript
+python scripts\check_docs_drift.py
+python scripts\check_structure.py
+python scripts\check_harness.py
+```
+
+The target had an existing `AGENTS.md`, which the installer preserved with
+`skip-existing`. Re-running the installer skipped all generated harness files.
+The copied TypeScript profile `check_harness.py` successfully ran the target's
+`lint`, `typecheck`, `test`, and `build` package scripts before the generic
+drift checks.
+
+Intentional failures were also verified:
+
+- `src/temp_debug.js` was rejected by `scripts/check_structure.py`.
+- `console.log(` in source code was rejected by the target lint script through
+  `scripts/check_harness.py`.
+- A broken local Markdown link was rejected by `scripts/check_docs_drift.py`.
+
+On Windows PowerShell, `npm.cmd` worked when direct `npm` invocation was blocked
+by script execution policy. The profile `check_harness.py` detected `npm.CMD`
+automatically.
+
 ## Assumptions
 
 - Windows PowerShell users should run `npm.cmd` if `npm.ps1` is blocked by
