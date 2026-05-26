@@ -19,3 +19,24 @@ Do not replace an existing `pyproject.toml` blindly. Merge the relevant sections
 from `pyproject.harness.toml` into the target project's existing config.
 
 Prefer the target project's existing test command if it already has one.
+
+## Profile Absorption Notes
+
+When Python is introduced after generic adoption:
+
+- Merge useful settings from `pyproject.harness.toml` into the target
+  `pyproject.toml` instead of replacing existing configuration.
+- Add Ruff, mypy, pyright, vulture, pytest, or pre-commit only when they fit the
+  target repository's existing toolchain and maintenance expectations.
+- Keep the target package manager and environment workflow as source of truth,
+  whether it uses pip, uv, Poetry, PDM, conda, or another tool.
+- Merge virtual environment, cache, coverage, and generated output ignores into
+  the target `.gitignore` when they are relevant.
+- Update `AGENTS.md` with Python commands, environment setup, source
+  directories, generated paths, and completion checks.
+- Update `docs/conventions/coding.md` with module layout, typing, testing,
+  import, error handling, logging, and dependency conventions.
+- Add a decision record when choosing a package manager, test runner, typing
+  strategy, app layout, or framework is an architectural decision.
+- In the final report, list which snippets were adopted, adapted, skipped, or
+  deferred.

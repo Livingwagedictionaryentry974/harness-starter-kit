@@ -27,6 +27,28 @@ Expose a single local verification command in `package.json`:
 Use `npm.cmd` instead of `npm` when running commands from Windows PowerShell if
 script execution policy blocks `npm.ps1`.
 
+## Profile Absorption Notes
+
+When Next.js is introduced after generic adoption:
+
+- Merge useful scripts from `package-scripts.harness.json` into `package.json`
+  instead of replacing the target's scripts.
+- Merge relevant ignores from `gitignore.harness.txt`, especially `.next/`,
+  `node_modules/`, `tsconfig.tsbuildinfo`, generated output, and the local
+  `harness-starter-kit/` clone.
+- Keep the target package manager as source of truth; do not add npm, pnpm, or
+  yarn only because this profile mentions them.
+- Review any `tsconfig.json` or `next-env.d.ts` changes made by Next.js during
+  setup, then keep intentional changes instead of reverting them blindly.
+- Update `AGENTS.md` with Next.js commands, source directories, generated
+  paths, route conventions, and completion checks.
+- Update `docs/conventions/coding.md` with App Router, data fetching, component
+  boundary, styling, and testing conventions.
+- Add a decision record when choosing Next.js, an app/router structure, runtime
+  strategy, or state management approach is an architectural decision.
+- In the final report, list which snippets were adopted, adapted, skipped, or
+  deferred.
+
 ## Next.js Notes
 
 - Do not rely on `next lint` for current Next.js projects unless the target
