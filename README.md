@@ -12,6 +12,9 @@
 |____/ |_/_/   \_\_| \_\|_| |_____|_| \_\ |_|\_\___| |_|
 </pre>
 
+<img width="1672" height="358" alt="harness-starter-kit-logo" src="https://github.com/user-attachments/assets/114feea7-6d8c-4006-9262-d5cc4ad7e604" />
+
+
 # harness-starter-kit
 
 <p align="center">
