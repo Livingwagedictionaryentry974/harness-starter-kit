@@ -184,8 +184,6 @@ def is_placeholder_record(path: Path, text: str) -> bool:
         "yyyy-mm-dd",
         "template",
         "placeholder",
-        "entrypoint",
-        "entry point",
         "no known",
     )
     return (
