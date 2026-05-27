@@ -133,6 +133,11 @@ Boot, Vue, Python, TypeScript 중심 profile의 설치와 drift check 실행 가
 검증합니다. 자세한 coverage와 opt-in E2E checks는
 [`docs/validation.md`](docs/validation.md)를 보세요.
 
+실제 dogfooding 대상은
+[baskduf/harness_starter_kit_django](https://github.com/baskduf/harness_starter_kit_django)입니다.
+이 작은 Django 프로젝트로 prompt-first adoption, `/harness update`, failure
+memory, effectiveness tracking을 실제 저장소에서 검증합니다.
+
 이 테스트들은 harness adoption이 반복되는 agent 실수를 줄인다는 것을 증명하지는
 않습니다. 비교 가능한 작업, wrong-file edits, first-pass verification, human
 rework 측정은 [`docs/evaluation.md`](docs/evaluation.md)와

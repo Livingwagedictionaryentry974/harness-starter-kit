@@ -159,6 +159,11 @@ Node.js, Next.js, Django, FastAPI, Flask, React, Spring Boot, Vue, Python, and
 TypeScript-oriented profiles. See [`docs/validation.md`](docs/validation.md) for
 coverage details and opt-in E2E checks.
 
+A live dogfooding target is
+[baskduf/harness_starter_kit_django](https://github.com/baskduf/harness_starter_kit_django),
+a small Django project used to test prompt-first adoption, `/harness update`,
+failure memory, and effectiveness tracking in a real repository.
+
 They do not prove that harness adoption reduces repeated agent mistakes. Use
 [`docs/evaluation.md`](docs/evaluation.md) and
 [`docs/templates/effectiveness-report.md`](docs/templates/effectiveness-report.md)

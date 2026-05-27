@@ -131,6 +131,11 @@ Spring Boot、Vue、Python、TypeScript 相关 profile 的安装行为和 runnab
 checks。Coverage details 和 opt-in E2E checks 见
 [`docs/validation.md`](docs/validation.md)。
 
+实际 dogfooding target 是
+[baskduf/harness_starter_kit_django](https://github.com/baskduf/harness_starter_kit_django)。
+这个小型 Django project 用于在真实仓库中验证 prompt-first adoption、
+`/harness update`、failure memory 和 effectiveness tracking。
+
 这些 tests 并不能证明 harness adoption 会减少 repeated agent mistakes。要测量
 comparable tasks、wrong-file edits、first-pass verification 和 human rework，请使用
 [`docs/evaluation.md`](docs/evaluation.md) 与
