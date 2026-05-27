@@ -1,7 +1,6 @@
-
-
-<img width="1672" height="358" alt="harness-starter-kit-logo" src="https://github.com/user-attachments/assets/114feea7-6d8c-4006-9262-d5cc4ad7e604" />
-
+<p align="center">
+  <img alt="harness-starter-kit agent session demo" src="site/assets/banner.gif" />
+</p>
 
 <p align="center">
   <img alt="Generic profile" src="https://img.shields.io/badge/profile-generic-6b7280?style=flat-square" />
@@ -24,15 +23,6 @@
     <img alt="Launch site" src="https://img.shields.io/badge/Launch-Agent_Session_Demo-0077ff?style=for-the-badge" />
   </a>
 </p>
-
-<p align="center">
-  See how a pasted prompt becomes durable repo rules, checks, and memory.
-</p>
-
-`harness-starter-kit` is a prompt-first starter kit for applying harness
-engineering to software projects. It helps agents move repeated instructions
-out of chat and into durable repository artifacts: agent rules, constraints,
-feedback loops, knowledge storage, and drift checks.
 
 ## Quick Start
 

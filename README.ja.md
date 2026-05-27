@@ -3,6 +3,10 @@
 **[English](README.md)** | [한국어](README.ko.md) | **日本語** | [简体中文](README.zh-CN.md)
 
 <p align="center">
+  <img alt="harness-starter-kit agent session demo" src="site/assets/banner.gif" />
+</p>
+
+<p align="center">
   <img alt="Generic profile" src="https://img.shields.io/badge/profile-generic-6b7280?style=flat-square" />
   <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
@@ -21,15 +25,6 @@
     <img alt="Launch site" src="https://img.shields.io/badge/Launch-Agent_Session_Demo-0077ff?style=for-the-badge" />
   </a>
 </p>
-
-<p align="center">
-  貼り付けた prompt がリポジトリの rules、checks、memory として残る流れを確認できます。
-</p>
-
-`harness-starter-kit` は、ソフトウェアプロジェクトに harness engineering を
-適用するための prompt-first starter kit です。繰り返しの指示をチャットでは
-なく、リポジトリ内の rules、constraints、feedback loops、knowledge store、
-drift checks として残せるようにします。
 
 詳細な運用ドキュメントは英語を基準に維持します。この README は入口です。
 

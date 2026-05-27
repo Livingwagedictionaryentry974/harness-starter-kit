@@ -3,6 +3,10 @@
 **[English](README.md)** | [한국어](README.ko.md) | [日本語](README.ja.md) | **简体中文**
 
 <p align="center">
+  <img alt="harness-starter-kit agent session demo" src="site/assets/banner.gif" />
+</p>
+
+<p align="center">
   <img alt="Generic profile" src="https://img.shields.io/badge/profile-generic-6b7280?style=flat-square" />
   <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
@@ -21,14 +25,6 @@
     <img alt="Launch site" src="https://img.shields.io/badge/Launch-Agent_Session_Demo-0077ff?style=for-the-badge" />
   </a>
 </p>
-
-<p align="center">
-  查看粘贴的 prompt 如何变成仓库中的 rules、checks 和 memory。
-</p>
-
-`harness-starter-kit` 是一个 prompt-first starter kit，用于把 harness
-engineering 应用到软件项目中。它帮助代理把重复指令从聊天迁移到仓库里的持久
-规则、约束、反馈回路、知识存储和 drift checks。
 
 详细操作文档以英文维护。本 README 作为快速入口。
 

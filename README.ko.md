@@ -3,6 +3,10 @@
 **[English](README.md)** | **한국어** | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
 
 <p align="center">
+  <img alt="harness-starter-kit agent session demo" src="site/assets/banner.gif" />
+</p>
+
+<p align="center">
   <img alt="Generic profile" src="https://img.shields.io/badge/profile-generic-6b7280?style=flat-square" />
   <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
@@ -21,14 +25,6 @@
     <img alt="Launch site" src="https://img.shields.io/badge/Launch-Agent_Session_Demo-0077ff?style=for-the-badge" />
   </a>
 </p>
-
-<p align="center">
-  붙여넣은 prompt가 저장소 규칙, checks, memory로 남는 흐름을 확인하세요.
-</p>
-
-`harness-starter-kit`은 소프트웨어 프로젝트에 harness engineering을 적용하기
-위한 prompt-first starter kit입니다. 반복되는 지시를 채팅이 아니라 저장소 안의
-규칙, 제약, 피드백 루프, 지식 저장소, drift check로 남기도록 돕습니다.
 
 상세 운영 문서는 영어 기준으로 유지합니다. 이 README는 빠른 진입점입니다.
 
