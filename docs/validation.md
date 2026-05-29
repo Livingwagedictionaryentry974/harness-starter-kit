@@ -20,6 +20,14 @@ python scripts/check_effectiveness_plan.py
 python scripts/harness_doctor.py --target .
 ```
 
+Profile README consistency is covered by
+`tests/test_profile_consistency.py`, which runs as part of the full unittest
+suite. Run it directly when adding or changing profile guidance:
+
+```powershell
+python -m unittest tests.test_profile_consistency
+```
+
 ## Fixture Smoke Tests
 
 Automated fixture smoke tests cover harness installation for:

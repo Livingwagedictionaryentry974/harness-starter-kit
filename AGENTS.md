@@ -64,6 +64,10 @@ python scripts/check_effectiveness_plan.py
 python scripts/harness_doctor.py --target .
 ```
 
+When changing profile README files, also keep
+`docs/templates/profile-readme.md`, `docs/checklists/profile-maintenance.md`,
+and `tests/test_profile_consistency.py` aligned.
+
 ## How To Apply This Kit To A Target Repository
 
 1. Inspect the target repository before editing.
