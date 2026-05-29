@@ -25,6 +25,12 @@
   </a>
 </p>
 
+<p align="center">
+  <a href="https://dev.to/baskduf/i-stopped-prompt-engineering-my-ai-coding-agent-i-started-engineering-the-repo-instead-1i3e">
+    <img alt="Read the launch essay" src="https://img.shields.io/badge/Read-Launch_Essay-0A0A0A?style=for-the-badge&logo=devdotto&logoColor=white" />
+  </a>
+</p>
+
 ## Quick Start
 
 Open the target repository with your coding agent and give it this prompt:
