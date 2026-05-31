@@ -1,189 +1,133 @@
-const responseNode = document.querySelector("#codex-response");
-const taskListNode = document.querySelector("#task-list");
-const copyButton = document.querySelector(".copy-message");
-const messageActions = document.querySelector(".message-actions");
-const copyStatus = document.querySelector(".copy-status");
-const helpTrigger = document.querySelector(".help-trigger");
-const helpModal = document.querySelector(".help-modal");
-const userStep = document.querySelector('[data-chat-step="user"]');
-const agentStep = document.querySelector('[data-chat-step="agent"]');
-let copyStatusTimer = null;
+/* =========================================================
+   Harness Starter Kit — site interactions
+   ========================================================= */
+(function () {
+  "use strict";
 
-const adoptionPrompt = `Use this kit to apply harness engineering to this repository:
+  /* ---------- language toggle (KO / EN) ---------- */
+  const body = document.body;
+  const langToggle = document.getElementById("lang-toggle");
 
-https://github.com/baskduf/harness-starter-kit
-
-Clone the kit into ./harness-starter-kit if it is not already present, read it,
-then apply its prompt-first harness engineering workflow to this repository.
-
-Requirements:
-- Treat the current working directory as the target repository.
-- Treat ./harness-starter-kit as read-only reference material after cloning.
-- Inspect this repository before editing.
-- Preserve existing architecture, tools, package manager, commands, docs, and
-  conventions.
-- Do not blindly copy templates.
-- Add only the minimum useful harness pieces.
-- Prefer updating existing docs/configs over duplicating them.
-- Do not overwrite or delete existing files without explaining why.
-- If I ask for /harness doctor, use
-  ./harness-starter-kit/commands/harness-doctor.md.
-- If I ask for /harness update after adoption, use
-  ./harness-starter-kit/commands/harness-update.md to refresh the kit reference,
-  record .harness/source.json, and selectively update target harness files
-  without blindly overwriting existing files.
-- If I ask for /harness refresh after adoption, use
-  ./harness-starter-kit/commands/harness-refresh.md to review existing harness
-  docs, rules, knowledge records, and checks for stale or duplicated guidance.
-  Do not delete, archive, move, or rename files without my explicit approval for
-  the specific files.
-
-Expected result:
-- project-specific AGENTS.md or updated existing agent instructions
-- knowledge store if no equivalent exists
-- lightweight drift checks based on this repo's real rules
-- local verification commands using existing tools
-- adoption report with files changed, checks to run, assumptions, remaining
-  manual steps, and whether ./harness-starter-kit should be removed, ignored, or
-  kept before commit`;
-
-const responses = [
-  "Parsed the pasted markdown prompt.",
-  "Reading repo rules and constraints.",
-  "Planning minimal harness edits.",
-  "Preparing the adoption report.",
-];
-
-const taskSets = [
-  [
-    ["Inspect", "done", "done"],
-    ["Rules", "active", "running"],
-    ["Checks", "pending", "queued"],
-    ["Report", "pending", "queued"],
-  ],
-  [
-    ["Inspect", "done", "done"],
-    ["Rules", "done", "done"],
-    ["Checks", "active", "running"],
-    ["Report", "pending", "queued"],
-  ],
-  [
-    ["Inspect", "done", "done"],
-    ["Rules", "done", "done"],
-    ["Checks", "done", "done"],
-    ["Report", "active", "running"],
-  ],
-];
-
-let responseIndex = 0;
-let taskIndex = 0;
-let timer = null;
-
-function typeText(text) {
-  clearInterval(timer);
-  responseNode.textContent = "";
-
-  let cursor = 0;
-  timer = setInterval(() => {
-    responseNode.textContent = text.slice(0, cursor + 1);
-    cursor += 1;
-
-    if (cursor >= text.length) {
-      clearInterval(timer);
-    }
-  }, 22);
-}
-
-function renderTasks(tasks) {
-  taskListNode.innerHTML = "";
-
-  tasks.forEach(([label, state, status]) => {
-    const item = document.createElement("li");
-    item.className = `is-${state}`;
-
-    const text = document.createElement("span");
-    text.textContent = label;
-
-    const stateLabel = document.createElement("span");
-    stateLabel.className = "run-state";
-    stateLabel.textContent = status;
-
-    item.append(text, stateLabel);
-    taskListNode.append(item);
-  });
-}
-
-function advance() {
-  responseIndex = (responseIndex + 1) % responses.length;
-  taskIndex = (taskIndex + 1) % taskSets.length;
-  typeText(responses[responseIndex]);
-  renderTasks(taskSets[taskIndex]);
-}
-
-renderTasks(taskSets[0]);
-responseNode.textContent = "";
-
-setTimeout(() => {
-  userStep?.classList.add("is-visible");
-}, 350);
-
-setTimeout(() => {
-  agentStep?.classList.add("is-visible");
-  typeText(responses[0]);
-}, 1150);
-
-setTimeout(() => {
-  setInterval(advance, 4200);
-}, 3600);
-
-copyButton?.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(adoptionPrompt);
-    copyButton.setAttribute("aria-label", "Copied prompt");
-    if (copyStatus && messageActions) {
-      copyStatus.textContent = "Copied";
-      messageActions.classList.add("is-copied");
-      clearTimeout(copyStatusTimer);
-      copyStatusTimer = setTimeout(() => {
-        messageActions.classList.remove("is-copied");
-        copyButton.setAttribute("aria-label", "Copy prompt");
-      }, 1400);
-    }
-  } catch {
-    copyButton.setAttribute("aria-label", "Copy unavailable");
-    if (copyStatus && messageActions) {
-      copyStatus.textContent = "Unavailable";
-      messageActions.classList.add("is-copied");
-      clearTimeout(copyStatusTimer);
-      copyStatusTimer = setTimeout(() => {
-        messageActions.classList.remove("is-copied");
-        copyButton.setAttribute("aria-label", "Copy prompt");
-      }, 1400);
-    }
-  }
-});
-
-function setHelpOpen(isOpen) {
-  if (!helpModal) {
-    return;
+  function applyLang(lang) {
+    body.setAttribute("data-lang", lang);
+    body.parentElement.setAttribute("lang", lang === "ko" ? "ko" : "en");
+    document.querySelectorAll(".i18n").forEach(function (el) {
+      const txt = el.getAttribute("data-" + lang);
+      if (txt !== null) el.textContent = txt;
+    });
   }
 
-  helpModal.classList.toggle("is-open", isOpen);
-  helpModal.setAttribute("aria-hidden", String(!isOpen));
-}
-
-helpTrigger?.addEventListener("click", () => {
-  setHelpOpen(true);
-});
-
-document.querySelectorAll("[data-help-close]").forEach((node) => {
-  node.addEventListener("click", () => {
-    setHelpOpen(false);
-  });
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    setHelpOpen(false);
+  if (langToggle) {
+    langToggle.addEventListener("click", function () {
+      const next = body.getAttribute("data-lang") === "ko" ? "en" : "ko";
+      applyLang(next);
+    });
   }
-});
+  applyLang("ko");
+
+  /* ---------- copy prompt ---------- */
+  const copyBtn = document.getElementById("copy-btn");
+  const promptText = document.getElementById("prompt-text");
+  const toast = document.getElementById("toast");
+
+  function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(function () {
+      toast.classList.remove("show");
+    }, 1800);
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  if (copyBtn && promptText) {
+    copyBtn.addEventListener("click", function () {
+      const isKo = body.getAttribute("data-lang") === "ko";
+      copyText(promptText.innerText)
+        .then(function () {
+          copyBtn.classList.add("copied");
+          const label = copyBtn.querySelector(".copy-label");
+          if (label) label.textContent = isKo ? "복사됨" : "Copied";
+          showToast(isKo ? "프롬프트가 복사되었습니다" : "Prompt copied to clipboard");
+          setTimeout(function () {
+            copyBtn.classList.remove("copied");
+            if (label) label.textContent = isKo ? "복사" : "Copy";
+          }, 1800);
+        })
+        .catch(function () {
+          showToast(isKo ? "복사에 실패했습니다" : "Copy failed");
+        });
+    });
+  }
+
+  /* ---------- scroll reveal ---------- */
+  const reveals = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    );
+    reveals.forEach(function (el) {
+      io.observe(el);
+    });
+  } else {
+    reveals.forEach(function (el) {
+      el.classList.add("in");
+    });
+  }
+
+  /* ---------- scroll progress + topbar shadow ---------- */
+  const bar = document.getElementById("scroll-bar");
+  const topbar = document.querySelector(".topbar");
+  let ticking = false;
+
+  function onScroll() {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const height = doc.scrollHeight - doc.clientHeight;
+    const pct = height > 0 ? (scrollTop / height) * 100 : 0;
+    if (bar) bar.style.width = pct + "%";
+    if (topbar) topbar.classList.toggle("scrolled", scrollTop > 8);
+    ticking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+  onScroll();
+})();
